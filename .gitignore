@@ -1,2 +1,4 @@
 node_modules
 *.pt
+env.py
+.DS_Store

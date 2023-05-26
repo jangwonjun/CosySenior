@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from modules.ai import WonJunAI
+import env
 
 ai = WonJunAI()
 app = Flask(__name__, static_url_path='/static')
@@ -28,4 +29,4 @@ def voicechat():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', debug=True, port=5063)
+    app.run('0.0.0.0', debug=env.DEBUG, port=env.PORT)
