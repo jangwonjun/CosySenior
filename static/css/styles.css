@@ -1,0 +1,12 @@
+* {
+    list-style: none;
+}
+
+.card-fixed-height {
+    height: 80px !important;
+}
+
+a {
+    text-decoration: none !important;
+    /* color: #333 !important; */
+}

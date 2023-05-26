@@ -9,18 +9,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>독거노인 통합관제 센터</title>
-    <link rel="icon" type="image/x-icon" href="static/wonjun_logo.png" />
+    <title>CosySenior - 독거노인통합관제센터</title>
+    <link rel="icon" type="image/x-icon" href="static/img/wonjun_logo.png" />
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+    <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -33,7 +32,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-text mx-3"><img src="static/logo.png" alt="..." style="height:65px;"/></div>
+                <div class="sidebar-brand-text mx-3"><img src="static/img/cosy_senior.gif" alt="..." style="height:100px;"/></div>
             </a>
 
             <!-- Divider -->
@@ -59,15 +58,13 @@
 
             <!-- Sidebar Message -->
             <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="static/wonjun.png" alt="...",width="80">
+                <img class="sidebar-card-illustration mb-2" src="/static/img/wonjun.png" alt="...",width="400">
                 <p class="text-center mb-2"><strong>Power by</strong> ActiveJang</p>
-                <a class="btn btn-success btn-sm" href="https://jangwonjun.github.io/Active-Jang/", target="blank">바로가기</a>
+                <a class="btn btn-success btn-sm" href="https://activejang.com/", target="blank">바로가기</a>
             </div>
 
             
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+           
 
         </ul>
         <!-- End of Sidebar -->
@@ -100,34 +97,7 @@
                         </div>
                     </form>
 
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-    
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -137,7 +107,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">User</span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="static/img/user.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             
@@ -154,8 +124,8 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"><strong>알림</strong></h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                            일정생성</a>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="addlist()">
+                            일정생성</a> 
                     </div>
 
                     <!-- Content Row -->
@@ -169,7 +139,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 병원예약</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">5/4일<br>고대안암병원<br>장원준 교수님</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">고대안암병원<br>장원준 교수님</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -234,7 +204,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 안부전화</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">복지센터에서 <br> 전화가 왔습니다</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">복지센터에서<br>전화가 왔습니다</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -249,7 +219,7 @@
                             <!-- Approach -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">음성 서비스</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">음성 제어 서비스</h6>
                                 </div>
                                 <div class="card-body">
                                     여기서 테스트 해보세요
@@ -278,7 +248,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; 독거노인 통합관제센터 2023</span>
+                        <span>Copyright &copy; CosySenior - 독거노인통합관제센터 2023</span>
                     </div>
                 </div>
             </footer>
@@ -298,21 +268,21 @@
    
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap//static/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="/static/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="/static/vendor/chart./static/js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="/static/js/demo/chart-area-demo.js"></script>
+    <script src="/static/js/demo/chart-pie-demo.js"></script>
 
 </body>
 
