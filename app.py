@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request
 from modules.ai import WonJunAI
 import env
+from proctitle import setproctitle
+
+setproctitle.setproctitle(env.PROC_NAME)
 
 ai = WonJunAI()
 app = Flask(__name__, static_url_path='/static')
