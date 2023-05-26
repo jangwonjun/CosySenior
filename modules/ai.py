@@ -1,6 +1,6 @@
 import torch
 from transformers import PreTrainedTokenizerFast
-
+import env
 Q_TKN = "<usr>"
 A_TKN = "<sys>"
 BOS = '</s>'
@@ -23,16 +23,17 @@ device = torch.device(device)
 
 print(f"{device} detected")
 
-model = torch.load('modules/model test.pt',
-                   map_location=device)
-
 print("loading ai components successfully")
 
 
 class WonJunAI:
-    def __init__(self, p1="사람", p2="AI"):
+    def __init__(self, path, p1="사람", p2="AI"):
+        self.model = torch.load(path, map_location=device)
         self.p1 = p1
         self.p2 = p2
+        
+    def __repr__(self):
+        return self.model.__repr__()
 
     @torch.no_grad()
     def create_response(self, text):
@@ -40,7 +41,7 @@ class WonJunAI:
         while True:
             input_ids = torch.LongTensor(koGPT2_TOKENIZER.encode(
                 Q_TKN + text + SENT + A_TKN + gen_text)).unsqueeze(dim=0)
-            pred = model(input_ids)
+            pred = self.model(input_ids)
             pred = pred.logits
             gen = koGPT2_TOKENIZER.convert_ids_to_tokens(
                 torch.argmax(pred, dim=-1).squeeze().numpy().tolist())[-1]
@@ -51,4 +52,5 @@ class WonJunAI:
 
 
 if __name__ == "__main__":
+    model = WonJunAI(env.PT_ROUTE)
     print(model)

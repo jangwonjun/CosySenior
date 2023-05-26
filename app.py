@@ -5,7 +5,7 @@ from proctitle import setproctitle
 
 setproctitle.setproctitle(env.PROC_NAME)
 
-ai = WonJunAI()
+ai = WonJunAI(env.PT_ROUTE)
 app = Flask(__name__, static_url_path='/static')
 
 
