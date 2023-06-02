@@ -32,7 +32,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-text mx-3"><img src="static/img/cosy_senior.gif" alt="..." style="height:100px;"/></div>
+                <div class="sidebar-brand-text mx-3"><img src="static/img/cosy_senior.gif" alt="..."
+                        style="height:100px;" /></div>
             </a>
 
             <!-- Divider -->
@@ -46,23 +47,23 @@
                 </a>
             </li>
 
-          
-      
+
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
-          
+
 
             <!-- Sidebar Message -->
             <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="/static/img/wonjun.png" alt="...",width="400">
+                <img class="sidebar-card-illustration mb-2" src="/static/img/wonjun.png" alt="..." ,width="400">
                 <p class="text-center mb-2"><strong>Power by</strong> ActiveJang</p>
-                <a class="btn btn-success btn-sm" href="https://activejang.com/", target="blank">바로가기</a>
+                <a class="btn btn-success btn-sm" href="https://activejang.com/" , target="blank">바로가기</a>
             </div>
 
-            
-           
+
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -96,51 +97,35 @@
                     </form>
 
 
-                    
-                      
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" 
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">User</span>
-                                <img class="img-profile rounded-circle"
-                                    src="static/img/undraw_profile.svg">
-                            </a>
-                        </li>
 
-                    
+
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">User</span>
+                            <img class="img-profile rounded-circle" src="static/img/undraw_profile.svg">
+                        </a>
+                    </li>
+
+
 
                 </nav>
                 <!-- End of Topbar -->
-              <center>
-                <button id="startBtn" onclick="startSpeechRecognition()">
-                  <img src="static/img/microphone.png" alt="마이크" style="width: 400px">
-                </button>
-              </center>
-              
-                <script>
-                  function startSpeechRecognition() {
-                    const recognition = new webkitSpeechRecognition(); // Chrome에서는 webkitSpeechRecognition을 사용합니다.
-                    recognition.lang = 'ko-KR'; // 인식할 언어 설정
-              
-                    recognition.onresult = function(event) {
-                      const result = event.results[0][0].transcript;
-                      alert('인식 결과: ' + result);
-                      // 여기에서 인식된 결과를 활용할 수 있습니다.
-                    };
-              
-                    recognition.start();
-                  }
-                </script>
+                <center>
+                    <button id="startBtn" onclick="startSpeechRecognition()">
+                        <img src="static/img/microphone.png" alt="마이크" style="width: 400px">
+                    </button>
+                </center>
 
-
-
-            <div class="card shadow mb-4">
-                  <div class="card-body">
-                      Active Log
-                  </div>
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        Active Log
+                    </div>
+                </div>
             </div>
-
-
+        </div>
+    </div>
+</body>
 </html>
