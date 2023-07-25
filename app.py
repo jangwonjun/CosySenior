@@ -1,16 +1,17 @@
 from flask import Flask, render_template, request
 from modules.ai import WonJunAI
-import env
+from env import FLASK_ENUM
 from proctitle import setproctitle
 import os
-#from client_message import sending 주석 지우면 요금 폭탄
+from modules.client_message import Sending
+from modules.client_message import Client
 import config
 
 
 
-setproctitle.setproctitle(env.PROC_NAME)
+setproctitle.setproctitle(FLASK_ENUM.PROC_NAME)
 
-ai = WonJunAI(env.PT_ROUTE)
+ai = WonJunAI(FLASK_ENUM.PT_ROUTE)
 app = Flask(__name__, static_url_path='/static')
 
 @app.route('/')
@@ -71,4 +72,4 @@ def schedule_master():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', debug=env.DEBUG, port=env.PORT)
+    app.run('0.0.0.0', debug=FLASK_ENUM.DEBUG, port=FLASK_ENUM.PORT)

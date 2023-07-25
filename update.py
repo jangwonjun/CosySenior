@@ -2,7 +2,7 @@ import argparse as ap
 import subprocess as su
 import time
 import os
-import env
+from env import FLASK_ENUM
 
 
 def execute(command: str) -> str:
@@ -33,7 +33,7 @@ token = True
 for i in params:
     param = [j for j in i.split() if j]
     if len(param) == 4:
-        if param[3] == env.PROC_NAME and os.getpid() != int(param[0]):
+        if param[3] == FLASK_ENUM.PROC_NAME and os.getpid() != int(param[0]):
             result = f"kill {param[0]}"
             print(result)
             os.system(result)
@@ -44,6 +44,12 @@ for i in params:
 if not args.noPull:
     os.system(worktree)
     time.sleep(0.5)
+    try:
+        os.system(f"pip3 install -r {os.path.abspath('./requirements.txt')}")
+    except Exception as e:
+        print("Failed to install --disable-pip-version-check requirements.txt")
+    time.sleep(0.5)
+    
 if not args.kill:
     file_dir = os.path.abspath(__file__)
     path = os.path.dirname(file_dir)

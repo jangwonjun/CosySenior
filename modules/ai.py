@@ -1,6 +1,6 @@
 import torch
 from transformers import PreTrainedTokenizerFast
-import env
+from env import FLASK_ENUM
 Q_TKN = "<usr>"
 A_TKN = "<sys>"
 BOS = '</s>'
@@ -52,5 +52,5 @@ class WonJunAI:
 
 
 if __name__ == "__main__":
-    model = WonJunAI(env.PT_ROUTE)
+    model = WonJunAI(FLASK_ENUM.PT_ROUTE)
     print(model)
