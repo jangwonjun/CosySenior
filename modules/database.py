@@ -6,15 +6,26 @@ import click
 
 
 def init_db():
-    if is_database_created():
-        execute_query(f"USE {SQL.DB_NAME}")
+    conn, cur = get_db_direct()
+    if is_database_created(cur):
+        cur.execute(f"USE {SQL.DB_NAME}")
     else:
         print("생성 시도")
-        create_database()
+        create_database(cur)
+        conn.commit()
+        exit()
+
+
+def get_db_direct():
+    conn = pymysql.connect(
+        host=SQL.HOST, port=SQL.PORT, user=SQL.ID, passwd=SQL.PASSWORD, charset='utf8'
+    )
+    return conn, conn.cursor()
+
 
 def get_db():
     conn = pymysql.connect(
-        host=SQL.HOST, port=SQL.PORT, user=SQL.ID, passwd=SQL.PASSWORD, charset='utf8'
+        host=SQL.HOST, port=SQL.PORT, user=SQL.ID, passwd=SQL.PASSWORD, db=SQL.DB_NAME, charset='utf8'
     )
     if "db" not in g:
         g.conn = conn
@@ -63,14 +74,20 @@ def execute_query(query, query_item=tuple()):
     conn.commit()
 
 
-def is_database_created():
+def is_database_created(cur):
     query = "SHOW DATABASES LIKE %s;"
-    get = search_one(query, (SQL.DB_NAME,))
+    cur.execute(query, (SQL.DB_NAME,))
+    get = cur.fetchone()
     return get is not None
 
 
-def create_database():
+def create_database(cur):
     query = f"""
     CREATE DATABASE {SQL.DB_NAME};
     """
-    execute_query(query)
+    cur.execute(query)
+    cur.execute(f"USE {SQL.DB_NAME}")
+    with open('./queries.sql', 'r') as r:
+        queries = r.read().split("\n\n")
+        for query in queries:
+            cur.execute(query)

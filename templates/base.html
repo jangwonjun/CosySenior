@@ -97,11 +97,11 @@
                             </div>
                         </div>
                     </form>
-                    <a href="/signup" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm; width = 10px" onclick="addlist()">
+                    <!-- <a href="/signup" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm; width = 10px" onclick="addlist()">
                         회원가입</a> 
 
                     <a href="/login" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="addlist()">
-                        로그인</a> 
+                        로그인</a>  -->
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -109,7 +109,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">User</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.name }}</span>
                                 <img class="img-profile rounded-circle"
                                     src="static/img/user.jpg">
                             </a>

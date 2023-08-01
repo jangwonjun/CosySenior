@@ -4,3 +4,4 @@ env.py
 .DS_Store
 *.out
 test.*
+*.sql
