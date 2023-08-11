@@ -21,6 +21,14 @@
     <!-- Custom styles for this template-->
     <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/css/styles.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+     <!-- main.css 연결 -->
+    <link rel="stylesheet" href="static/css/swiper.css">
+    <!-- main.js 연결 -->
+    <script defer src="static/js/swiper.js"></script>
+    
 </head>
 
 <body id="page-top">
@@ -107,15 +115,22 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.name }}</span>
                                 <img class="img-profile rounded-circle"
                                     src="static/img/user.jpg">
+
                             </a>
-                            
-                            <!-- Dropdown - User Information -->
-                            
+                            <!-- grow in 뒤에 show를 붙여야지만 메뉴가 보여짐의 문제-->
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in show"
+                                        aria-labelledby="userDropdown">
+                                        <a class="dropdown-item text-gray-900" href="/logout" data-toggle="modal" data-target="#logoutModal">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
+                                            로그아웃
+                                        </a>
+                                    </div>
+                           
                         </li>
 
                     </ul>
@@ -132,23 +147,41 @@
                      
                     </div>
 
+                    
+
                     <!-- Content Row -->
                     <div class="text-center image-container">
                         <a href="/messages"><img src="static/img/button/set_call.webp" ,width="10"></a>
                         <a href="/arduino"><img src="static/img/button/iot.webp" ,width="10"></a>
                         <a href="/chatbot"><img src="static/img/button/talk.webp" ,width="10"></a>
-                        <a href="/schedule"><img src="static/img/button/schedule.webp" ,width="10"></a>
-                        <a href="https://www.spatial.io/s/WalletPlayers-Lo-Fi-Meetup-6397fd0654db5d0001bc7ed0?share=430764339281120347", target="blank"><img src="static/img/button/hospital.webp" ,width="10"></a>
-                        <a href="https://youtu.be/rEJi3TMHY1A", target="blank"><img src="static/img/button/eternal.webp" ,width="10"></a>
-                        <a href="https://pf.kakao.com/_cxfecxj", target="blank"><img src="static/img/button/help.webp" ,width="10"></a>
-                        <a href="https://youtu.be/rEJi3TMHY1A", target="blank"><img src="static/img/button/use.webp" ,width="10"></a>
+                        <a href="/emergency"><img src="static/img/button/emergency.jpeg" ,width="10"></a>
                       </div>
                 </div>
             
 
             </div>
+            <!--간격조절용 투명블럭-->
+            <table border="0"><tr><td height="50"</td></td></tr></table>   
+
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"><a href="https://bloom-attic-d6e.notion.site/Ver1-1-CosySenior-547b7e7002ab42c483066be712fac0a3?pvs=4" target="blank"><img src = "static/img/swiper_img/notice.JPG"></div></a>
+                <div class="swiper-slide"><a href="https://www.youtube.com/watch?v=4YEcSp4wgig&list=PLxdxzl8yb8vx8-7C0-GMk5qx7IYs1nNMx&index=17" target="blank"><img src = "static/img/swiper_img/use.JPG"></div>
+                <div class="swiper-slide"><a href="https://forms.gle/1JjNkXx2BApcWT9q6"><img src = "static/img/swiper_img/recommend.JPG" target="blank"></div>
+                <div class="swiper-slide"><a href="https://www.youtube.com/watch?v=4YEcSp4wgig&list=PLxdxzl8yb8vx8-7C0-GMk5qx7IYs1nNMx&index=17" target="blank"><img src = "static/img/swiper_img/eternal.JPG"></div>
+                <div class="swiper-slide"><a href="https://activejang.com" target="blank"><img src = "static/img/swiper_img/activejang.JPG"></div>
+              </div>
           
+              <div class="swiper-pagination"></div>
           
+              <div class="swiper-button-prev">
+                <div class="material-icons"><</div>
+              </div>
+              <div class="swiper-button-next">
+                <div class="material-icons">></div>
+              </div>
+              
+            </div>
 
 
             <!-- Footer -->
@@ -171,9 +204,27 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
    
 
+
+  
     <!-- Bootstrap core JavaScript-->
     <script src="/static/vendor/jquery/jquery.min.js"></script>
     <script src="/static/vendor/bootstrap//static/js/bootstrap.bundle.min.js"></script>
@@ -192,5 +243,97 @@
     <script src="/static/js/demo/chart-pie-demo.js"></script>
 
 </body>
+
+<!-- Channel Plugin Scripts -->
+  <script>
+    (function () {
+      var w = window;
+      if (w.ChannelIO) {
+        return (window.console.error || window.console.log || function () { })('ChannelIO script included twice.');
+      }
+      var d = window.document;
+      var ch = function () {
+        ch.c(arguments);
+      };
+      ch.q = [];
+      ch.c = function (args) {
+        ch.q.push(args);
+      };
+      w.ChannelIO = ch;
+      function l() {
+        if (w.ChannelIOInitialized) {
+          return;
+        }
+        w.ChannelIOInitialized = true;
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+        s.charset = 'UTF-8';
+        var x = document.getElementsByTagName('script')[0];
+        x.parentNode.insertBefore(s, x);
+      }
+      if (document.readyState === 'complete') {
+        l();
+      } else if (window.attachEvent) {
+        window.attachEvent('onload', l);
+      } else {
+        window.addEventListener('DOMContentLoaded', l, false);
+        window.addEventListener('load', l, false);
+      }
+    })();
+    ChannelIO('boot', {
+      "pluginKey": "7a96725b-be06-436e-8910-7cc0ecad1ca1"
+    });
+  </script>
+
+
+  <script>
+    if ('WebSocket' in window) {
+      (function () {
+        function refreshCSS() {
+          var sheets = [].slice.call(document.getElementsByTagName("link"));
+          var head = document.getElementsByTagName("head")[0];
+          for (var i = 0; i < sheets.length; ++i) {
+            var elem = sheets[i];
+            var parent = elem.parentElement || head;
+            parent.removeChild(elem);
+            var rel = elem.rel;
+            if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+              var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+              elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+            }
+            parent.appendChild(elem);
+          }
+        }
+        var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+        var address = protocol + window.location.host + window.location.pathname + '/ws';
+        var socket = new WebSocket(address);
+        socket.onmessage = function (msg) {
+          if (msg.data == 'reload') window.location.reload();
+          else if (msg.data == 'refreshcss') refreshCSS();
+        };
+        if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+          console.log('Live reload enabled.');
+          sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+        }
+      })();
+    }
+    else {
+      console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+    }
+
+  </script>
+
+
+  <div id="ch-plugin" class="notranslate">
+    <div id="ch-plugin-entry">
+      <div style="display: block !important;"></div>
+    </div>
+    <div id="ch-plugin-script" style="display:none;" class="ch-messenger-hidden"> <iframe id="ch-plugin-script-iframe"
+        style="position:relative!important;height:100%!important;width:100%!important;border:none!important;"></iframe>
+    </div>
+    <style data-styled="active" data-styled-version="5.1.1"></style>
+  </div>
 
 </html>

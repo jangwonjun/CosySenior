@@ -2,10 +2,13 @@ import os
 from twilio.rest import Client
 from urllib.parse import urlencode
 from env import CALLS_ENUM
+import schedule
+import time
+
 
 
 class Calling(Client):
-
+    # schedule.every().day.at(time_value).do(__init__)
     # Use the Twilio-provided site for the TwiML response. Please Do not Modify
     URL = "https://twimlets.com/message?"
 

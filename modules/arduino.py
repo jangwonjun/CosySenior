@@ -1,28 +1,29 @@
 import serial
 import time
+from env import ARDUINO
+'''
 
-py_serial = serial.Serial(
-    
-    # Window
-    port='COM3',
-    
-    # 보드 레이트 (통신 속도)
-    baudrate=9600,
-)
+serial_port = ARDUINO.SER
+ser = serial.Serial(serial_port, 9600, timeout=1)
 
-while True:
-      
-    commend = input('아두이노에게 내릴 명령:')
-    
-    py_serial.write(commend.encode())
-    
-    time.sleep(0.1)
-    
-    if py_serial.readable():
-        
-        # 들어온 값이 있으면 값을 한 줄 읽음 (BYTE 단위로 받은 상태)
-        # BYTE 단위로 받은 response 모습 : b'\xec\x97\x86\xec\x9d\x8c\r\n'
-        response = py_serial.readline()
-        
-        # 디코딩 후, 출력 (가장 끝의 \n을 없애주기위해 슬라이싱 사용)
-        print(response[:len(response)-1].decode())
+
+class measure_arduino():
+    def __init__():
+            try:
+                print("Arduino Start")
+                while True:
+                    ser.write(b'r')  
+                    value = ser.readline().decode().strip()  
+                    if value.isdigit():  
+                        sensorValue = int(value)
+                        #print("화재 감지 이상 여부:", sensorValue)
+                    else:
+                        print("System:", value)
+                    
+                    time.sleep(1) 
+
+            except KeyboardInterrupt:
+                pass
+
+            ser.close()
+'''

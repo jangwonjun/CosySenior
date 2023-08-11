@@ -2,11 +2,16 @@ import os
 from twilio.rest import Client
 from urllib.parse import urlencode
 from env import CALLS_ENUM
+import schedule 
+import time
+
+
 
 
 class Sending(Client):
-
+    #schedule.every().day.at(time_value).do(__init__)
     print("successfully prepared message system")
+    
 
     def __init__(self, account_sid=CALLS_ENUM.ACCOUNT_SID, auth_token=CALLS_ENUM.AUTH_TOKEN):
 

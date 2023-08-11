@@ -3,100 +3,254 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>CosySenior - 회원가입</title>
+  <title>CosySenior - 회원가입</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="static/css/sb-admin-2.min.css" rel="stylesheet">
+  <!-- Custom styles for this template-->
+  <link href="static/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
 <body class="bg-gradient-primary">
 
-    <div class="container">
+  <div class="container">
 
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                    <img src = "static/img/signup.JPG">
-                    <div class="col-lg-7">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">새로운 계정 생성</h1>
-                            </div>
-                            <form class="user">
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="성">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="이름">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="이메일 주소">
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="비밀번호 입력">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="비밀번호 재입력">
-                                    </div>
-                                </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                    회원가입
-                                </a>
-                                <hr>
-                                <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> 구글 소셜로인(준비중)
-                                </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> 페이스북으로 소셜로그인(준비중)
-                                </a>
-                            </form>
-                            <hr>
-                            <div class="text-center">
-                                <a class="small" href="forgot-password.html">비밀번호를 분실하셨나요?</a>
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="login.html">이미 계정이 있으신가요?</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+
+          <!-- TODO: CSS 파일 분리, 색 관련 CSS 만들기 -->
+          <div class="bg-gradient-primary"
+            style="display:flex;flex-direction:column;justify-content: center;align-items: flex-start;">
+            <div style="width: 465px;" class="p-5">
+              <img src="static/img/signup.svg" style="background-color: transparent;">
+              <h1 class="text-center text-gray-100">회원가입</h1>
             </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">새로운 계정 생성</h1>
+              </div>
+              <form class="user" id="form">
+                <div class="form-group">
+                  <input name="email" type="email" class="form-control form-control-user" id="email"
+                    aria-describedby="emailHelp" placeholder="이메일 주소">
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input name="password" type="password" class="form-control form-control-user" id="password"
+                      placeholder="비밀번호">
+                  </div>
+                  <div class="col-sm-6">
+                    <input name="passwordCheck" type="password" class="form-control form-control-user"
+                      id="passwordCheck" placeholder="비밀번호 확인">
+                  </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                  <input name="name" type="text" class="form-control form-control-user" id="name"
+                    aria-describedby="emailHelp" placeholder="이름">
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6">
+                    <input name="phoneNumber" type="tel" class="form-control form-control-user" id="phoneNumber"
+                      placeholder="전화번호">
+                  </div>
+                  <div class="col-sm-6">
+                    <input name="helperPhoneNumber" type="tel" class="form-control form-control-user"
+                      id="helperPhoneNumber" placeholder="보호자 전화번호">
+                  </div>
+                </div>
+                <div onclick="customSubmit();" class="btn btn-primary btn-user btn-block">
+                  회원가입
+                </div>
+                <hr>
+                <a href="index.html" class="btn btn-google btn-user btn-block">
+                  <i class="fab fa-google fa-fw"></i> 구글 소셜로그인(준비중)
+                </a>
+                <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                  <i class="fab fa-facebook-f fa-fw"></i> 페이스북으로 소셜로그인(준비중)
+                </a>
+              </form>
+              <hr>
+              <div class="text-center">
+                <a class="small" href="forgot-password.html">비밀번호를 분실하셨나요?</a>
+              </div>
+              <div class="text-center">
+                <a class="small" href="/login">이미 계정이 있으신가요?</a>
+              </div>
+            </div>
+          </div>
         </div>
-
+      </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </div>
+  <script>
+    const form = document.getElementById("form");
+    const email = document.getElementById("email");
+    const userName = document.getElementById("name");
+    const phoneNumber = document.getElementById("phoneNumber");
+    const helperPhoneNumber = document.getElementById("helperPhoneNumber");
+    const password = document.getElementById("password");
+    const passwordCheck = document.getElementById("passwordCheck");
+    const noFillError = (e) => {
+      if (e.target.value.length == 0) {
+        e.target.style.borderColor = "#FF0000";
+      } else {
+        e.target.style.borderColor = null;
+      }
+    };
+    const mustFill = [email, userName, phoneNumber, phoneNumber, helperPhoneNumber, password, passwordCheck];
+    mustFill.forEach(element => {
+      element.addEventListener("focusout", noFillError);
+      element.addEventListener("keyup", noFillError);
+    });
+    password.addEventListener("focusout", (e) => {
+      if (password.value.length < 8) {
+        password.style.borderColor = "#FF0000";
+      } else {
+        password.style.borderColor = null;
+      }
+    });
+    passwordCheck.addEventListener("keyup", (e) => {
+      if (password.value !== passwordCheck.value) {
+        passwordCheck.style.borderColor = "#FF0000";
+      } else {
+        passwordCheck.style.borderColor = null;
+      }
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    });
+    const customSubmit = () => {
+      let fill = true;
+      mustFill.forEach(element => {
+        if (element.value.length == 0) {
+          fill = false;
+          element.style.borderColor = "#FF0000";
+        }
+      });
+      if (!fill) return;
+      if (password.value.length < 8) return;
+      if (password.value != passwordCheck.value) return;
+      form.method = "POST";
+      form.submit();
+    }
+  </script>
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
 
 </body>
+
+&lt;<!-- Channel Plugin Scripts -->
+<script>
+  (function () {
+    var w = window;
+    if (w.ChannelIO) {
+      return (window.console.error || window.console.log || function () { })('ChannelIO script included twice.');
+    }
+    var d = window.document;
+    var ch = function () {
+      ch.c(arguments);
+    };
+    ch.q = [];
+    ch.c = function (args) {
+      ch.q.push(args);
+    };
+    w.ChannelIO = ch;
+    function l() {
+      if (w.ChannelIOInitialized) {
+        return;
+      }
+      w.ChannelIOInitialized = true;
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+      s.charset = 'UTF-8';
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+    }
+    if (document.readyState === 'complete') {
+      l();
+    } else if (window.attachEvent) {
+      window.attachEvent('onload', l);
+    } else {
+      window.addEventListener('DOMContentLoaded', l, false);
+      window.addEventListener('load', l, false);
+    }
+  })();
+  ChannelIO('boot', {
+    "pluginKey": "7a96725b-be06-436e-8910-7cc0ecad1ca1"
+  });
+</script>
+
+
+<script>
+  if ('WebSocket' in window) {
+    (function () {
+      function refreshCSS() {
+        var sheets = [].slice.call(document.getElementsByTagName("link"));
+        var head = document.getElementsByTagName("head")[0];
+        for (var i = 0; i < sheets.length; ++i) {
+          var elem = sheets[i];
+          var parent = elem.parentElement || head;
+          parent.removeChild(elem);
+          var rel = elem.rel;
+          if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+          }
+          parent.appendChild(elem);
+        }
+      }
+      var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+      var address = protocol + window.location.host + window.location.pathname + '/ws';
+      var socket = new WebSocket(address);
+      socket.onmessage = function (msg) {
+        if (msg.data == 'reload') window.location.reload();
+        else if (msg.data == 'refreshcss') refreshCSS();
+      };
+      if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+        console.log('Live reload enabled.');
+        sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+      }
+    })();
+  }
+  else {
+    console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+  }
+
+</script>
+
+
+<div id="ch-plugin" class="notranslate">
+  <div id="ch-plugin-entry">
+    <div style="display: block !important;"></div>
+  </div>
+  <div id="ch-plugin-script" style="display:none;" class="ch-messenger-hidden"> <iframe id="ch-plugin-script-iframe"
+      style="position:relative!important;height:100%!important;width:100%!important;border:none!important;"></iframe>
+  </div>
+  <style data-styled="active" data-styled-version="5.1.1"></style>
+</div>
 
 </html>

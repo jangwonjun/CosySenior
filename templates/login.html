@@ -3,101 +3,198 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>CosySenior - 로그인</title>
+  <title>CosySenior - 로그인</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="static/css/sb-admin-2.min.css" rel="stylesheet">
+  <!-- Custom styles for this template-->
+  <link href="static/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
 <body class="bg-gradient-primary">
 
-    <div class="container">
+  <div class="container">
 
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
 
-            <div class="col-xl-10 col-lg-12 col-md-9">
+      <div class="col-xl-10 col-lg-12 col-md-9">
 
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <img src="static/img/login.jpg">
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">로그인</h1>
-                                    </div>
-                                    <form class="user" method="post" action="/login/auth">
-                                        <div class="form-group">
-                                            <input name="email" type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="이메일 주소">
-                                        </div>
-                                        <div class="form-group">
-                                            <input name="password" type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="비밀번호">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">기억하기</label>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            로그인
-                                        </button>
-                                        <h2>{{ error_code }}</h2>
-                                        <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> 구글 소셜로그인(준비중)
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> 페이스북 소셜로그인(준비중)
-                                        </a>
-                                    </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">비밀번호를 분실하셨나요?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="/signup">회원가입하기</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <img src="static/img/login.jpg">
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    {% if error_code == "password_incorrect" %}
+                    <h1 class="h4 text-warning mb-4">아이디 혹은 패스워드가 틀렸습니다.</h1>
+                    {% elif error_code == "account_created" %}
+                    <h1 class="h4 text-info mb-4">계정이 생성되었습니다.</h1>
+                    {% else %}
+                    <h1 class="h4 text-gray-900 mb-4">로그인</h1>
+
+                    {% endif %}
+                  </div>
+                  <form class="user" method="post" action="/login/auth">
+                    <div class="form-group">
+                      <input name="email" type="email" class="form-control form-control-user" id="exampleInputEmail"
+                        aria-describedby="emailHelp" placeholder="이메일 주소">
                     </div>
+                    <div class="form-group">
+                      <input name="password" type="password" class="form-control form-control-user"
+                        id="exampleInputPassword" placeholder="비밀번호">
+                    </div>
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox small">
+                        <input type="checkbox" class="custom-control-input" id="customCheck">
+                        <label class="custom-control-label" for="customCheck">기억하기</label>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                      로그인
+                    </button>
+
+                    <hr>
+                    <a href="index.html" class="btn btn-google btn-user btn-block">
+                      <i class="fab fa-google fa-fw"></i> 구글 소셜로그인(준비중)
+                    </a>
+                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                      <i class="fab fa-facebook-f fa-fw"></i> 페이스북 소셜로그인(준비중)
+                    </a>
+                  </form>
+                  <hr>
+                  <div class="text-center">
+                    <a class="small" href="forgot-password.html">비밀번호를 분실하셨나요?</a>
+                  </div>
+                  <div class="text-center">
+                    <a class="small" href="/signup">회원가입하기</a>
+                  </div>
                 </div>
-
+              </div>
             </div>
-
+          </div>
         </div>
+
+      </div>
 
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </div>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
 
 </body>
+&lt;<!-- Channel Plugin Scripts -->
+<script>
+  (function () {
+    var w = window;
+    if (w.ChannelIO) {
+      return (window.console.error || window.console.log || function () { })('ChannelIO script included twice.');
+    }
+    var d = window.document;
+    var ch = function () {
+      ch.c(arguments);
+    };
+    ch.q = [];
+    ch.c = function (args) {
+      ch.q.push(args);
+    };
+    w.ChannelIO = ch;
+    function l() {
+      if (w.ChannelIOInitialized) {
+        return;
+      }
+      w.ChannelIOInitialized = true;
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+      s.charset = 'UTF-8';
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+    }
+    if (document.readyState === 'complete') {
+      l();
+    } else if (window.attachEvent) {
+      window.attachEvent('onload', l);
+    } else {
+      window.addEventListener('DOMContentLoaded', l, false);
+      window.addEventListener('load', l, false);
+    }
+  })();
+  ChannelIO('boot', {
+    "pluginKey": "7a96725b-be06-436e-8910-7cc0ecad1ca1"
+  });
+</script>
+
+
+<script>
+  if ('WebSocket' in window) {
+    (function () {
+      function refreshCSS() {
+        var sheets = [].slice.call(document.getElementsByTagName("link"));
+        var head = document.getElementsByTagName("head")[0];
+        for (var i = 0; i < sheets.length; ++i) {
+          var elem = sheets[i];
+          var parent = elem.parentElement || head;
+          parent.removeChild(elem);
+          var rel = elem.rel;
+          if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+          }
+          parent.appendChild(elem);
+        }
+      }
+      var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+      var address = protocol + window.location.host + window.location.pathname + '/ws';
+      var socket = new WebSocket(address);
+      socket.onmessage = function (msg) {
+        if (msg.data == 'reload') window.location.reload();
+        else if (msg.data == 'refreshcss') refreshCSS();
+      };
+      if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+        console.log('Live reload enabled.');
+        sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+      }
+    })();
+  }
+  else {
+    console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+  }
+
+</script>
+
+
+<div id="ch-plugin" class="notranslate">
+  <div id="ch-plugin-entry">
+    <div style="display: block !important;"></div>
+  </div>
+  <div id="ch-plugin-script" style="display:none;" class="ch-messenger-hidden"> <iframe id="ch-plugin-script-iframe"
+      style="position:relative!important;height:100%!important;width:100%!important;border:none!important;"></iframe>
+  </div>
+  <style data-styled="active" data-styled-version="5.1.1"></style>
+</div>
 
 </html>

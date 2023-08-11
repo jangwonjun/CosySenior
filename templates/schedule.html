@@ -1,59 +1,156 @@
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
-    </head>
-   <center>
-    <body>
-            <header>
-            <h1>스케줄</h1>
-        </header>
-      
-    
-        <div class = "txc-textbox" style="background-color:#eeeeee; border: #c1c1c1 1px solid; padding:10px; width: 50%;">
-            <p style="font-size:150%"><b>개인정보 수집 및 이용</b></p>
-            <p data-ke-size = "size16">CosySenior는 다음과 같은 기능을 지원하기 위해서 사용자의 개인정보를 수집 및 이용합니다 <br> <br> 1. 사용자의 이름 및 닉네임 
-                <br> 2. 데이터 저장을 위한 사용자의 아이디 및 비밀번호 <br> 3. 전화/문자 알림서비스를 위한 사용자의 전화번호 <br> 4.사용자의 일상 및 스케줄 
-                 <br> <br> 데이터 유출 피해 신고 및 기타 문의사항은 admin@activejang.com으로 문의 주시기 바랍니다.
-            </p>
-        </div>
-        <table width="120"><tbody><tr><td width="120" height="30" /></tr></tbody></table> 
-        <form action="#" method="#" name="#" enctype="multipart/form-data" onsubmit="#">
-            <input type="checkbox" name="agreements" onClick="agreeCheck(this.form)"> [필수] 위에 내용을 이해하고 동의합니다.
-            
-        </form>
-        
-        <script>
-            function agreeCheck(frm){
-                       if (frm.checkButton.disabled==true)
-                        frm.checkButton.disabled=false
-                       else
-                        frm.checkButton.disabled=true
-             }
-        </script>
+<!DOCTYPE html>
+<html lang="en">
 
-        <table width="120"><tbody><tr><td width="120" height="30" /></tr></tbody></table> 
-        
-        <form action="" method="POST">
+<head>
 
-            <div class="input-box">
-                <input id="user_name" type="text" name="user_name" placeholder="사용자 이름">
-                <label for="user_name">사용자 아름</label>
-            </div>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-            <div class="input-box">
-                <input id="id" type="text" name="id" placeholder="아이디">
-                <label for="id">아이디</label>
-            </div>
+    <title>SOS 긴급상황</title>
 
-            <div class="input-box">
-                <input id="password" type="password" name="password" placeholder="비밀번호">
-                <label for="password">비밀번호</label>
-            </div>
-            <table width="120"><tbody><tr><td width="120" height="30" /></tr></tbody></table> 
-            <input type="submit" value="회원가입">
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
-        </form>
+    <!-- Custom styles for this template-->
+    <link href="static/css/sb-admin-2.min.css" rel="stylesheet">
 
-    </body>
-  <center>
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <img src="static/img/sos.jpeg">
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">긴급호출</h1>
+                                        <h3 class="h6 text-gray-900 mb-4">위급상황이시면 긴급호출을 눌러주세요!</h3>
+                                    </div>
+                                    <a href="/messages" class="btn btn-google btn-user btn-block">
+                                        <i class="fab fa-google fa-fw"></i> SOS 버튼
+                                    </a>
+                                
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+</body>
+
+
+
+<!-- Channel Plugin Scripts -->
+  <script>
+    (function () {
+      var w = window;
+      if (w.ChannelIO) {
+        return (window.console.error || window.console.log || function () { })('ChannelIO script included twice.');
+      }
+      var d = window.document;
+      var ch = function () {
+        ch.c(arguments);
+      };
+      ch.q = [];
+      ch.c = function (args) {
+        ch.q.push(args);
+      };
+      w.ChannelIO = ch;
+      function l() {
+        if (w.ChannelIOInitialized) {
+          return;
+        }
+        w.ChannelIOInitialized = true;
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+        s.charset = 'UTF-8';
+        var x = document.getElementsByTagName('script')[0];
+        x.parentNode.insertBefore(s, x);
+      }
+      if (document.readyState === 'complete') {
+        l();
+      } else if (window.attachEvent) {
+        window.attachEvent('onload', l);
+      } else {
+        window.addEventListener('DOMContentLoaded', l, false);
+        window.addEventListener('load', l, false);
+      }
+    })();
+    ChannelIO('boot', {
+      "pluginKey": "7a96725b-be06-436e-8910-7cc0ecad1ca1"
+    });
+  </script>
+
+
+  <script>
+    if ('WebSocket' in window) {
+      (function () {
+        function refreshCSS() {
+          var sheets = [].slice.call(document.getElementsByTagName("link"));
+          var head = document.getElementsByTagName("head")[0];
+          for (var i = 0; i < sheets.length; ++i) {
+            var elem = sheets[i];
+            var parent = elem.parentElement || head;
+            parent.removeChild(elem);
+            var rel = elem.rel;
+            if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+              var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+              elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+            }
+            parent.appendChild(elem);
+          }
+        }
+        var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+        var address = protocol + window.location.host + window.location.pathname + '/ws';
+        var socket = new WebSocket(address);
+        socket.onmessage = function (msg) {
+          if (msg.data == 'reload') window.location.reload();
+          else if (msg.data == 'refreshcss') refreshCSS();
+        };
+        if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+          console.log('Live reload enabled.');
+          sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+        }
+      })();
+    }
+    else {
+      console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+    }
+
+  </script>
+
+
+  <div id="ch-plugin" class="notranslate">
+    <div id="ch-plugin-entry">
+      <div style="display: block !important;"></div>
+    </div>
+    <div id="ch-plugin-script" style="display:none;" class="ch-messenger-hidden"> <iframe id="ch-plugin-script-iframe"
+        style="position:relative!important;height:100%!important;width:100%!important;border:none!important;"></iframe>
+    </div>
+    <style data-styled="active" data-styled-version="5.1.1"></style>
+  </div>
 </html>

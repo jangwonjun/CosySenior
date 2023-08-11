@@ -1,29 +1,190 @@
-<!doctype html>
-<html lang="ko">
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
   <meta charset="utf-8">
-    <title>HTML</title>
-    <style>
-      * {
-        font-size: 16px;
-        font-family: Consolas, sans-serif;
-      }
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    </style>
-  </head>
-  <center>
-        <body>
-            <div class="input-box">
-                <input id="phone_number" type="text" name="phone_number" placeholder="전화번호">
-                <label for="id">전화번호</label>
+  <title>건강 문자/전화 서비스</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="static/css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+
+  <div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <img src="static/img/message_service.jpeg">
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">원하는 시간에 문자/전화 서비스를 받아보세요!</h1>
+                <h3 class="h5 text-gray-900 mb-5">서비스를 받으실 시간을 입력하시면 됩니다!</h3>
+
+
+                <form method="post">
+                  <p><input type="time" id="timeInput" name="time_input"></p>
+                  <p><input type="button" value="Submit" onclick="getTimeValue()"></p>
+
+                  <script>
+                    function getTimeValue() {
+                      var timeValue = document.getElementById("timeInput").value;
+                      console.log("Selected time:", timeValue);
+                      document.querySelector('form').submit();
+                    }
+                  </script>
+                </form>
+
+              </div>
+
+              <a href="https://www.youtube.com/watch?v=8_xuY6esfc8&list=PLxdxzl8yb8vx8-7C0-GMk5qx7IYs1nNMx&index=2"
+                class="btn btn-primary btn-user btn-block">
+                설정 방법 보러가기
+              </a>
+              <a href="https://www.youtube.com/watch?v=8_xuY6esfc8&list=PLxdxzl8yb8vx8-7C0-GMk5qx7IYs1nNMx&index=2"
+                class="btn btn-primary btn-user btn-block">
+                실행 결과 보러가기
+              </a>
+              <!--간격조절용 투명블럭-->
+              <table border="0">
+                <tr>
+                  <td height="50"></td>
+                </tr>
+              </table>
+
+
+              <div class="text-center">
+                <a class="small" href="forgot-password.html">다음단계로 안넘어가요!</a>
+              </div>
+              <div class="text-center">
+                <a class="small" href="/login">설정을 하였지만 작동하지 않아요!</a>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-            <form method = "post">
-            <p><input type="time" id="timeInput" name="timeInput"></p>
-            <p><input type="submit" value="Submit"></p>
-            </form>
-        
-        </body>
-      </html>
-    </center>
-  
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+</body>
+
+</html>
+
+&lt;<!-- Channel Plugin Scripts -->
+<script>
+  (function () {
+    var w = window;
+    if (w.ChannelIO) {
+      return (window.console.error || window.console.log || function () { })('ChannelIO script included twice.');
+    }
+    var d = window.document;
+    var ch = function () {
+      ch.c(arguments);
+    };
+    ch.q = [];
+    ch.c = function (args) {
+      ch.q.push(args);
+    };
+    w.ChannelIO = ch;
+    function l() {
+      if (w.ChannelIOInitialized) {
+        return;
+      }
+      w.ChannelIOInitialized = true;
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+      s.charset = 'UTF-8';
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+    }
+    if (document.readyState === 'complete') {
+      l();
+    } else if (window.attachEvent) {
+      window.attachEvent('onload', l);
+    } else {
+      window.addEventListener('DOMContentLoaded', l, false);
+      window.addEventListener('load', l, false);
+    }
+  })();
+  ChannelIO('boot', {
+    "pluginKey": "7a96725b-be06-436e-8910-7cc0ecad1ca1"
+  });
+</script>
+
+
+<script>
+  if ('WebSocket' in window) {
+    (function () {
+      function refreshCSS() {
+        var sheets = [].slice.call(document.getElementsByTagName("link"));
+        var head = document.getElementsByTagName("head")[0];
+        for (var i = 0; i < sheets.length; ++i) {
+          var elem = sheets[i];
+          var parent = elem.parentElement || head;
+          parent.removeChild(elem);
+          var rel = elem.rel;
+          if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+          }
+          parent.appendChild(elem);
+        }
+      }
+      var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+      var address = protocol + window.location.host + window.location.pathname + '/ws';
+      var socket = new WebSocket(address);
+      socket.onmessage = function (msg) {
+        if (msg.data == 'reload') window.location.reload();
+        else if (msg.data == 'refreshcss') refreshCSS();
+      };
+      if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+        console.log('Live reload enabled.');
+        sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+      }
+    })();
+  }
+  else {
+    console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+  }
+
+</script>
+
+
+<div id="ch-plugin" class="notranslate">
+  <div id="ch-plugin-entry">
+    <div style="display: block !important;"></div>
+  </div>
+  <div id="ch-plugin-script" style="display:none;" class="ch-messenger-hidden"> <iframe id="ch-plugin-script-iframe"
+      style="position:relative!important;height:100%!important;width:100%!important;border:none!important;"></iframe>
+  </div>
+  <style data-styled="active" data-styled-version="5.1.1"></style>
+</div>
