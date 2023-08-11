@@ -2,9 +2,6 @@ import os
 from twilio.rest import Client
 from urllib.parse import urlencode
 from env import CALLS_ENUM
-import schedule
-import time
-
 
 
 class Calling(Client):
