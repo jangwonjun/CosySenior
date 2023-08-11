@@ -1,16 +1,3 @@
-from flask import Flask, request, redirect, render_template, url_for
-from urllib.parse import urlencode
-from modules.orm import User
-from modules.ai import WonJunAI
-from modules.database import init_db
-from env import FLASK_ENUM, AI_ENUM
-from proctitle import setproctitle
-import os
-from modules.client_message import Sending
-from modules.client_message import Client
-from modules.identify_email import Emailing
-# from modules.arduino import measure_arduino
-
 from flask_login import (
     LoginManager,
     current_user,
@@ -19,6 +6,22 @@ from flask_login import (
     logout_user,
     UserMixin
 )
+import time
+from flask import Flask, request, redirect, render_template, url_for
+from urllib.parse import urlencode
+from modules.orm import User, CallLog
+from modules.ai import WonJunAI
+from modules.database import init_db
+from env import FLASK_ENUM, AI_ENUM
+from proctitle import setproctitle
+import os
+from modules.client_message import Sending
+from modules.client_call import Calling
+from modules.identify_email import Emailing
+from apscheduler.schedulers.background import BackgroundScheduler
+sched = BackgroundScheduler()
+caller = Calling()
+# from modules.arduino import measure_arduino
 
 
 setproctitle.setproctitle(FLASK_ENUM.PROC_NAME)
@@ -75,7 +78,6 @@ def voicechat():
 def signup_method():
     if request.method != 'POST':
         return render_template('register.html')
-    print(request.form)
     name: str = request.form.get('name')
     email: str = request.form.get('email')
     password: str = request.form.get('password')
@@ -83,21 +85,24 @@ def signup_method():
     help_phone_number: str = request.form.get('helperPhoneNumber')
     phone_number = phone_number.replace("-", "")
     help_phone_number = help_phone_number.replace("-", "")
-    
+    if phone_number.startswith('010'):
+        phone_number = "+8210" + phone_number[3:]
+    if help_phone_number.startswith('010'):
+        help_phone_number = "+8210" + help_phone_number[3:]
+
     if (email.find('@') == -1):
         return render_template('register.html')
-    
+
     user = User.create(email, password, name,
                        phone_number, help_phone_number)
-    return redirect(url_for('login', next=next, error_code='account_created'))
+    return redirect(url_for('login', next=next, status_code='account_created'))
 
 
 @app.route('/login')
 def login():
     next = request.args.get('next', '')  # login 후 이동할 페이지 지정
-    error_code = request.args.get('error_code', '')
-    print(next, error_code)
-    return render_template('login.html', next=next, error_code=error_code)
+    status_code = request.args.get('status_code', '')
+    return render_template('login.html', next=next, status_code=status_code)
 
 
 @app.route('/login/auth', methods=['POST'])
@@ -115,7 +120,7 @@ def login_auth():
         # login 한 사용자의 정보를 session에 저장해줌
         login_user(user)
         return redirect(safe_next_redirect)
-    return redirect(url_for('login', next=next, error_code='password_incorrect'))
+    return redirect(url_for('login', next=next, status_code='password_incorrect'))
 
 
 @app.route('/logout', methods=['GET'])
@@ -129,19 +134,17 @@ def logout():
 def send_message():
     if request.method == 'POST':
         time_value = request.form['time_input']
-        print("Selected time:", time_value)
+        CallLog.create(current_user.id, time_value)
     return render_template('message.html')
 
 
 @app.route('/arduino', methods=['GET', 'POST'])
 def arduino():
-    '''
     try:
-       measure_arduino()
+        measure_arduino()
     except Exception as e:
         print(e)
-        return render_template('arduino.html', title='CosySenior ')
-    '''
+        return render_template('arduino.html', title='CosySenior')
 
 
 @app.route('/emergency', methods=['GET', 'POST'])
@@ -154,5 +157,15 @@ def test_email():
     return render_template('lowyal.html')
 
 
+@sched.scheduled_job('cron', second='0', id='send_message')
+def send_message():
+    current_time = time.strftime("%H:%M:%S")
+    calls = CallLog.get_phone_by_call_time(current_time)
+    for call in calls:
+        caller.create_call("테스트", to=call)
+
+
+sched.start()
+
 if __name__ == '__main__':
-    app.run('0.0.0.0', debug=FLASK_ENUM.DEBUG, port=FLASK_ENUM.PORT)
+    app.run('0.0.0.0', debug=False, port=FLASK_ENUM.PORT)

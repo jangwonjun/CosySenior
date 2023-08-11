@@ -39,9 +39,9 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    {% if error_code == "password_incorrect" %}
+                    {% if status_code == "password_incorrect" %}
                     <h1 class="h4 text-warning mb-4">아이디 혹은 패스워드가 틀렸습니다.</h1>
-                    {% elif error_code == "account_created" %}
+                    {% elif status_code == "account_created" %}
                     <h1 class="h4 text-info mb-4">계정이 생성되었습니다.</h1>
                     {% else %}
                     <h1 class="h4 text-gray-900 mb-4">로그인</h1>

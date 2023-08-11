@@ -4,15 +4,6 @@ from abc import *
 import time
 
 
-def create(table_name, **kwargs):
-    db = get_db()
-    query = f"INSERT INTO {table_name}({', '.join(kwargs.keys())}) VALUES({', '.join(['%s']*len(kwargs))});"
-    print(query)
-    db.execute(query, tuple(
-        kwargs.values()))
-    commit()
-
-
 class RDMS(metaclass=ABCMeta):
     @abstractmethod
     def __init__(self):
@@ -73,7 +64,6 @@ class User(UserMixin, RDMS):
         user = User.get_one_raw('id', user_id, User.TABLE_NAME)
         if not user:
             return None
-        print(user)
         return User(*user)
 
     @staticmethod
@@ -81,35 +71,38 @@ class User(UserMixin, RDMS):
         user = User.get_one_raw('email', email, User.TABLE_NAME)
         if not user:
             return None
-        print(user)
         return User(*user)
 
     @staticmethod
     def create(email, password, name, phone_number, help_phone_number):
-        create(User.TABLE_NAME, email=email, password=password, name=name,
-               phone_number=phone_number, help_phone_number=help_phone_number)
+        create_column(User.TABLE_NAME, email=email, password=password, name=name,
+                      phone_number=phone_number, help_phone_number=help_phone_number)
         return User.find_id_by_email(email)
 
 
 class CallLog(RDMS):
     TABLE_NAME = 'send_log'
 
-    def __init__(self, user_id, send_time):
+    def __init__(self, user_id, send_time: str):
         self.user_id = int(user_id)
         self.send_time = time.strptime(send_time, "%H:%M:%S")
 
     @staticmethod
-    def get(user_id):
-        calls = CallLog.get_all_raw('user_id', user_id, CallLog.TABLE_NAME)
-        if calls:
-            return None
-        print(calls)
-        return [CallLog(*call) for call in calls]
+    def get_phone_by_call_time(time_value):
+        conn, cur = get_db_direct()
+        cur.execute(f"USE {SQL.DB_NAME}")
+        query = f"""
+            SELECT noin_user.phone_number
+            FROM send_log LEFT JOIN noin_user 
+            ON noin_user.id = send_log.user_id
+            WHERE send_time=%s;
+        """
+        calls = search_all(query, (time_value, ), lambda: cur)
+
+        if not calls:
+            return tuple()
+        return calls
 
     @staticmethod
-    def create(user_id, ):
-        db = get_db()
-        db.execute(f"INSERT INTO {CallLog.TABLE_NAME}(email, password, name, phone_number, help_phone_number) VALUES(%s, %s, %s, %s, %s);", (
-            email, password, name, phone_number, help_phone_number))
-        commit()
-        return User.find_id_by_email(email)
+    def create(user_id, send_time: str):
+        create_column(CallLog.TABLE_NAME, user_id=user_id, send_time=send_time)

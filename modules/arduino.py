@@ -1,15 +1,14 @@
 import serial
 import time
 from env import ARDUINO
+
 '''
-
-serial_port = ARDUINO.SER
-ser = serial.Serial(serial_port, 9600, timeout=1)
-
-
 class measure_arduino():
     def __init__():
+        
             try:
+                serial_port = ARDUINO.SER
+                ser = serial.Serial(serial_port, 9600, timeout=1)
                 print("Arduino Start")
                 while True:
                     ser.write(b'r')  

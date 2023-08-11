@@ -10,9 +10,10 @@ def init_db():
     if is_database_created(cur):
         cur.execute(f"USE {SQL.DB_NAME}")
     else:
-        print("생성 시도")
+        print("Create Database")
         create_database(cur)
         conn.commit()
+        print("Successfully created database. please restart your server.")
         exit()
 
 
@@ -55,21 +56,20 @@ def init_app(app):
     app.cli.add_command(init_db_command)
 
 
-def search_one(query, query_item=tuple()):
-    cur = get_db()
-
+def search_one(query, query_item=tuple(), cur_func=get_db):
+    cur = cur_func()
     cur.execute(query, query_item)
     return cur.fetchone()
 
 
-def search_all(query, query_item=tuple()):
-    cur = get_db()
+def search_all(query, query_item=tuple(), cur_func=get_db):
+    cur = cur_func()
     cur.execute(query, query_item)
     return cur.fetchall()
 
 
-def execute_query(query, query_item=tuple()):
-    cur = get_db()
+def execute_query(query, query_item=tuple(), cur_func=get_db):
+    cur = cur_func()
     cur.execute(query, query_item)
     conn.commit()
 
@@ -91,3 +91,11 @@ def create_database(cur):
         queries = r.read().split("\n\n")
         for query in queries:
             cur.execute(query)
+
+
+def create_column(table_name, **kwargs):
+    db = get_db()
+    query = f"INSERT INTO {table_name}({', '.join(kwargs.keys())}) VALUES({', '.join(['%s']*len(kwargs))});"
+    values = tuple(kwargs.values())
+    db.execute(query, values)
+    commit()
