@@ -12,7 +12,7 @@ from urllib.parse import urlencode
 from modules.orm import User, CallLog
 from modules.ai import WonJunAI
 from modules.database import init_db
-from env import FLASK_ENUM, AI_ENUM
+from env import FLASK_ENUM, AI_ENUM, CALL
 from proctitle import setproctitle
 import os
 from modules.client_message import Sending
@@ -152,15 +152,51 @@ def arduino():
 def schedule_master():
     return render_template('schedule.html')
 
-@app.route('/email',methods=['GET', 'POST'])
+@app.route('/emailjang',methods=['GET', 'POST'])
 def send_email():
     if request.method == 'POST':
         message_target = request.form['target'] #상대방
         message_title = request.form['title'] #제목
         message_context = request.form['msg'] #내용
-        print(f"TEST : {message_target}")
         Send_Email(message_target, message_context, message_title)
     return render_template('email.html')
+
+@app.route('/messagejang',methods=['GET', 'POST'])
+def send_static_message():
+    if request.method == 'POST':
+        message_target = request.form['target'] #상대방 전화번호
+        message_context = request.form['msg'] #메세지 전송내용
+        send_password = request.form['password'] #메세지 전송내용
+        
+        if message_target.startswith('010'):
+            message_target = "+8210" + message_target[3:]
+                
+        print(message_target,message_context,send_password)
+        
+        if send_password == CALL.PASSWORD:
+            Sender.create_message(message_context, message_target)
+            print("Successfully Messaging")
+    #sender.create_message(message_target, message_context)
+    
+    return render_template('static_message.html')
+
+@app.route('/calljang',methods=['GET', 'POST'])
+def send_static_call():
+    if request.method == 'POST':
+        message_target = request.form['target'] #상대방 전화번호
+        message_context = request.form['msg'] #메세지 전송내용
+        send_password = request.form['password'] #메세지 전송내용
+        
+        if message_target.startswith('010'):
+            message_target = "+8210" + message_target[3:]
+                
+        print(message_target,message_context,send_password)
+        
+        if send_password == CALL.PASSWORD:
+            caller.create_call(message_context, message_target)
+            print("Successfully Calling")
+            
+    return render_template('static_call.html')
 
 
 
@@ -175,7 +211,7 @@ def send_message():
     calls = CallLog.get_phone_by_call_time(current_time)
     for call in calls:
         caller.create_call(ai.create_response("굿모닝"), to=call)
-        Sender.create_message(ai.create_response("아침식사"), to=call)
+        Sender.create_message(ai.create_response("활기찬 아침"), to=call)
         
 
 sched.start()
@@ -186,4 +222,4 @@ def HealthMessage():
     Sender.create_message(ai.create_response("굿모닝"), to=call)
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', debug=False, port=FLASK_ENUM.PORT)
+    app.run('0.0.0.0', debug=True, port=FLASK_ENUM.PORT)
