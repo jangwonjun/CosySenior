@@ -213,16 +213,21 @@ def send_message():
     current_time = time.strftime("%H:%M:%S")
     calls = CallLog.get_phone_by_call_time(current_time)
     for call in calls:
+        print(f"{call}")
+        print(ai.create_response("안녕"))
         caller.create_call(ai.create_response("굿모닝"), to=call)
         Sender.create_message(ai.create_response("활기찬 아침"), to=call)
+        print("successful")
         
 
-sched.start()
+
 
 @sched.scheduled_job('cron', hour='1', minute='18', id="HealthMessage")
 def HealthMessage():
     print(call)
     Sender.create_message(ai.create_response("굿모닝"), to=call)
+
+sched.start()
 
 if __name__ == '__main__':
     app.run('0.0.0.0', debug=True, port=FLASK_ENUM.PORT)
