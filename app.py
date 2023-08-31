@@ -21,7 +21,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from modules.identify_email import Send_Email
 sched = BackgroundScheduler()
 caller = Calling()
-Sender = Sending()
+sender = Sending()
 # from modules.arduino import measure_arduino
 
 
@@ -177,7 +177,7 @@ def send_static_message():
         print(message_target,message_context,send_password)
         
         if send_password == CALL.PASSWORD:
-            Sender.create_message(message_context, message_target)
+            sender.create_message(message_context, message_target)
             print("Successfully Messaging")
     #sender.create_message(message_target, message_context)
     
@@ -211,21 +211,21 @@ def test_email():
 @sched.scheduled_job('cron', second='0', id='send_message')
 def send_message():
     current_time = time.strftime("%H:%M:%S")
+    print(f"시작 시간: {current_time}")
     calls = CallLog.get_phone_by_call_time(current_time)
+    print(f"전화 리스트: {calls}")
     for call in calls:
-        print(f"{call}")
-        print(ai.create_response("안녕"))
+        print(f"{call}에게 전화 시작")
+        print(f"메세지: {ai.create_response('안녕')}")
         caller.create_call(ai.create_response("굿모닝"), to=call)
-        Sender.create_message(ai.create_response("활기찬 아침"), to=call)
+        sender.create_message(ai.create_response("활기찬 아침"), to=call)
         print("successful")
         
-
-
-
-@sched.scheduled_job('cron', hour='1', minute='18', id="HealthMessage")
-def HealthMessage():
-    print(call)
-    Sender.create_message(ai.create_response("굿모닝"), to=call)
+#TODO: 메세지 전송 제어
+# @sched.scheduled_job('cron', hour='1', minute='18', id="HealthMessage")
+# def HealthMessage():
+#     print(call)
+#     sender.create_message(ai.create_response("굿모닝"), to=call)
 
 sched.start()
 
