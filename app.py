@@ -208,9 +208,9 @@ def test_email():
     return render_template('lowyal.html')
 
 
-@sched.scheduled_job('cron', second='0', id='send_message')
+@sched.scheduled_job('cron', second='10', id='send_message')
 def send_message():
-    current_time = time.strftime("%H:%M:%S")
+    current_time = time.strftime("%H:%M:00")
     print(f"시작 시간: {current_time}")
     calls = CallLog.get_phone_by_call_time(current_time)
     print(f"전화 리스트: {calls}")
