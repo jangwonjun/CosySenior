@@ -162,6 +162,8 @@ def send_email():
         
         if send_password == CALL.PASSWORD:
             Send_Email(message_target, message_context, message_title)
+            print(f"to {message_target} successfully send...")
+            print(message_context)
     return render_template('email.html')
 
 @app.route('/messagejang',methods=['GET', 'POST'])
