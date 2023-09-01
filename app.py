@@ -160,10 +160,12 @@ def send_email():
         message_context = request.form['msg'] #내용
         send_password = request.form['password'] #메세지 전송내용
         
+        print(f"to {message_target} successfully send...")
+        print(message_context)
+        
         if send_password == CALL.PASSWORD:
             Send_Email(message_target, message_context, message_title)
-            print(f"to {message_target} successfully send...")
-            print(message_context)
+           
     return render_template('email.html')
 
 @app.route('/messagejang',methods=['GET', 'POST'])
