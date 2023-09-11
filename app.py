@@ -230,6 +230,7 @@ def univ_ratio_check():
     print(current_time)
     univ_ratio("대학경쟁률 실시간 조회")
     
+    
 
 sched.start()
 

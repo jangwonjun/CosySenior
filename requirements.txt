@@ -11,3 +11,4 @@ apscheduler==3.10.1
 beautifulsoup4 == 4.11.2
 html_table_parser == 0.1.0
 
+
