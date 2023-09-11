@@ -15,6 +15,6 @@ class univ_ratio:
             data.append(td.text.strip())
 
         print(time)
-        result = "전형 이름 : " + str(data[27]), "| 모집인원 "+ data[28] +"명" + " | 실시간 지원자수 "+ data[29]+"명"," | 실시간 경쟁률 " + data[30]
+        result = "전형 이름 : " + str(data[27]), "| 모집인원수 "+ data[28] +"명" + " | 실시간 지원자수 "+ data[29]+"명"," | 실시간 경쟁률 " + data[30]
         print("scuccessfully")
         print(result)
