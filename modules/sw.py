@@ -1,14 +1,21 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 from html_table_parser import parser_functions as parser
+from modules.identify_email import Send_Email
+from env import EMAIL
+from apscheduler.schedulers.background import BackgroundScheduler
+
+
+sched = BackgroundScheduler()
 
 class univ_ratio:
-    def __init__(self,time):
-        self.time = time
+    def __init__(self,server_message):
+        self.server_message = server_message
+    
         gacheon_sw = 'https://addon.jinhakapply.com/RatioV1/RatioH/Ratio10190361.html'
         gatalic_sw = 'https://addon.jinhakapply.com/RatioV1/RatioH/Ratio10030221.html'
         gagede_sw = 'http://ratio.uwayapply.com/Sl5KMDpXJkpmJSY6Jkp6ZlRm'
-        
+            
         result = urlopen(gacheon_sw)
         result2 = urlopen(gatalic_sw)
         result3 = urlopen(gagede_sw)
@@ -36,11 +43,17 @@ class univ_ratio:
         for td in soup3.find_all('td'):
             data3.append(td.text.strip())
 
-            
-        print(time)
-        print("가천대 AI/SW 전형 : " + str(data[1079]), "| 모집인원 "+ data[1080] +"명" + " | 실시간 지원자수 "+ data[1081]+"명"," | 실시간 경쟁률 " + data[1082])
-        print("가톨릭대 잠재능력우수자(면접전형) : " + str(data2[492]), "| 모집인원 "+ data2[493] +"명" + " | 실시간 지원자수 "+ data2[494]+"명"," | 실시간 경쟁률 " + data2[495])
-        print("서울과기대 인공지능응용학과 : " + str(data3[284]), "| 모집인원 "+ data3[285] +"명" + " | 실시간 지원자수 "+ data3[286]+"명"," | 실시간 경쟁률 " + data3[287])
-        print("scuccessfully")
-        print(result)
+        gacheon = "가천대 AI/SW 전형 : " + str(data[1079]), "| 모집인원 "+ data[1080] +"명" + " | 실시간 지원자수 "+ data[1081]+"명"," | 실시간 경쟁률 " + data[1082]
+        gatalic =  "가톨릭대 잠재능력우수자(면접전형) : " + str(data2[492]), "| 모집인원 "+ data2[493] +"명" + " | 실시간 지원자수 "+ data2[494]+"명"," | 실시간 경쟁률 " + data2[495]
+        gagede = "서울과기대 인공지능응용학과 : " + str(data3[284]), "| 모집인원 "+ data3[285] +"명" + " | 실시간 지원자수 "+ data3[286]+"명"," | 실시간 경쟁률 " + data3[287]
+        
+        final_result = gacheon + gatalic + gagede 
+        print(server_message)
+        print(final_result)
+        print("successfully")
+        Send_Email(EMAIL.SEND, str(final_result), "대학교 실시간 경쟁률")
+        
+        
+        
+        
         
