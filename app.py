@@ -19,6 +19,7 @@ from modules.client_message import Sending
 from modules.client_call import Calling
 from apscheduler.schedulers.background import BackgroundScheduler
 from modules.identify_email import Send_Email
+from modules.sw import univ_ratio
 sched = BackgroundScheduler()
 caller = Calling()
 Sender = Sending()
@@ -196,7 +197,9 @@ def send_static_call():
         print(message_target,message_context,send_password)
         
         if send_password == CALL.PASSWORD:
-            caller.create_call(message_context, message_target)
+            #caller.create_call(message_context, message_target)
+            status_system = 1 
+            return status_system
             print("Successfully Calling")
             
     return render_template('static_call.html')
@@ -208,21 +211,28 @@ def test_email():
     return render_template('lowyal.html')
 
 
-@sched.scheduled_job('cron', second='0', id='send_message')
+@sched.scheduled_job('cron', second='10', id='send_message')
 def send_message():
-    current_time = time.strftime("%H:%M:%S")
+    current_time = time.strftime("%H:%M:00")
+    #print(f"시작 시간: {current_time}")
     calls = CallLog.get_phone_by_call_time(current_time)
+    #print(f"전화 리스트: {calls}")
     for call in calls:
+        print(f"{call}에게 전화 시작")
+        print(f"메세지: {ai.create_response('안녕')}")
         caller.create_call(ai.create_response("굿모닝"), to=call)
-        Sender.create_message(ai.create_response("활기찬 아침"), to=call)
-        
+        sender.create_message(ai.create_response("활기찬 아침"), to=call)
+        print("successful")
+
+@sched.scheduled_job('cron', second='0', id='univ_ratio_check')
+def univ_ratio_check():
+    current_time = time.strftime("%H:%M:00")
+    print(current_time)
+    univ_ratio("대학경쟁률 실시간 모음")
+    
 
 sched.start()
 
-@sched.scheduled_job('cron', hour='1', minute='18', id="HealthMessage")
-def HealthMessage():
-    print(call)
-    Sender.create_message(ai.create_response("굿모닝"), to=call)
 
 if __name__ == '__main__':
     app.run('0.0.0.0', debug=True, port=FLASK_ENUM.PORT)
