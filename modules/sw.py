@@ -104,11 +104,13 @@ class univ_ratio:
         soongsil = "숭실대 특기자전형  : " + data8[728] +  " | 모집인원 "+ data8[729] +"명" + " | 실시간 지원자수 "+ data8[730]+"명"," | 실시간 경쟁률 " + data8[731]
         hangyang = "한양대 특기자전형  : " + data9[850] +  " | 모집인원 "+ data9[851] +"명" + " | 실시간 지원자수 "+ data9[852]+"명"," | 실시간 경쟁률 " + data9[853]
         
-        final_result = gacheon + gatalic + gagede + unist + dgist + kwang +soongsil + hangyang
-        
+        final_result = "\n".join([str(gacheon), str(gatalic), str(gagede), str(unist), str(dgist), str(kwang), str(soongsil), str(hangyang)])
+                
         print(server_message)
+    
         print(final_result)
         print("successfully")
+        
         Send_Email(EMAIL.SEND, str(final_result), "대학교 실시간 경쟁률")
         
      
