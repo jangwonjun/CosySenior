@@ -15,23 +15,59 @@ class univ_ratio:
         gacheon_sw = 'https://addon.jinhakapply.com/RatioV1/RatioH/Ratio10190361.html'
         gatalic_sw = 'https://addon.jinhakapply.com/RatioV1/RatioH/Ratio10030221.html'
         gagede_sw = 'http://ratio.uwayapply.com/Sl5KMDpXJkpmJSY6Jkp6ZlRm'
+        gist_sw = 'http://ratio.uwayapply.com/Sl5KMCYlckpeJSY6Jkp6ZlRm'
+        unist_sw = 'http://ratio.uwayapply.com/Sl5KMCYlVzpKXiUmOiZKemZUZg=='
+        dgist_sw = 'http://ratio.uwayapply.com/Sl5KMCYlclZKXiUmOiZKemZUZg=='
+        kwang_sw = 'http://ratio.uwayapply.com/Sl5KTjlKZiUmOiZKemZUZg=='
+        soongsil_sw = 'https://addon.jinhakapply.com/RatioV1/RatioH/Ratio11010301.html'
+        hangyang_sw = 'https://addon.jinhakapply.com/RatioV1/RatioH/Ratio11640281.html'
             
         result = urlopen(gacheon_sw)
         result2 = urlopen(gatalic_sw)
         result3 = urlopen(gagede_sw)
+        result4 = urlopen(gist_sw)
+        result5 = urlopen(unist_sw)
+        result6 = urlopen(dgist_sw)
+        result7 = urlopen(kwang_sw)
+        result8 = urlopen(soongsil_sw)
+        result9 = urlopen(hangyang_sw)
         
         html = result.read()
         html2 = result2.read()
         html3 = result3.read()
+        html4 = result4.read()
+        html5 = result5.read()
+        html6 = result6.read()
+        html7 = result7.read()
+        html8 = result8.read()
+        html9 = result9.read()
         
         soup = BeautifulSoup(html, 'html.parser')
         soup2 = BeautifulSoup(html2, 'html.parser')
         soup3 = BeautifulSoup(html3, 'html.parser')
+        soup4 = BeautifulSoup(html4, 'html.parser')
+        soup5 = BeautifulSoup(html5, 'html.parser')
+        soup6 = BeautifulSoup(html6, 'html.parser')
+        soup7 = BeautifulSoup(html7, 'html.parser')
+        soup8 = BeautifulSoup(html8, 'html.parser')
+        soup9 = BeautifulSoup(html9, 'html.parser')
         
         temp = soup.find("table", {'class':'tableRatio2'})
         temp2 = soup2.find("table", {'class':'tableRatio3'})
         temp3 = soup3.find_all("tr", {'class':'trFieldValue'})
+        temp4 = soup4.find_all("tr", {'class':'trFieldValue'})
+        temp5 = soup5.find_all("table", {'name':'YogangStat'})
+        temp6 = soup6.find_all("tr", {'class':'trFieldValue'})
+        temp7 = soup7.find_all("tr", {'class':'trFieldValue'})
+        temp8 = soup8.find_all("table", {'class':'tableRatio3'})
+        temp9 = soup9.find_all("table", {'class':'tableRatio3'})
         
+        data9 = []
+        data8 = []
+        data7 = []
+        data6 = []
+        data5 = []
+        data4 = []
         data3 = []
         data = []
         data2 = []
@@ -42,18 +78,39 @@ class univ_ratio:
             data2.append(td.text.strip())
         for td in soup3.find_all('td'):
             data3.append(td.text.strip())
-
+        for td in soup4.find_all('td'):
+            data4.append(td.text.strip())
+        for td in soup5.find_all('td'):
+            data5.append(td.text.strip())
+        for td in soup6.find_all('td'):
+            data6.append(td.text.strip())
+        for td in soup7.find_all('td'):
+            data7.append(td.text.strip())
+        for td in soup8.find_all('td'):
+            data8.append(td.text.strip())
+        for td in soup9.find_all('td'):
+            data9.append(td.text.strip())
+       
+  
+        
+         
         gacheon = "가천대 AI/SW 전형 : " + str(data[1079]), "| 모집인원 "+ data[1080] +"명" + " | 실시간 지원자수 "+ data[1081]+"명"," | 실시간 경쟁률 " + data[1082]
         gatalic =  "가톨릭대 잠재능력우수자(면접전형) : " + str(data2[492]), "| 모집인원 "+ data2[493] +"명" + " | 실시간 지원자수 "+ data2[494]+"명"," | 실시간 경쟁률 " + data2[495]
         gagede = "서울과기대 인공지능응용학과 : " + str(data3[284]), "| 모집인원 "+ data3[285] +"명" + " | 실시간 지원자수 "+ data3[286]+"명"," | 실시간 경쟁률 " + data3[287]
+        gist = "GIST 특기자전형 : " + str(data4[12]), "| 모집인원 "+ data4[13] +"명" + " | 실시간 지원자수 "+ data4[14]+"명"," | 실시간 경쟁률 " + data4[15]
+        unist =  "UNIST 특기자전형 :  " +  " | 모집인원 "+ data5[7] +"명" + " | 실시간 지원자수 "+ data5[8]+"명"," | 실시간 경쟁률 " + data5[9]
+        dgist = "DGIST  :  " + data6[12] +  " | 모집인원 "+ data6[13] +"명" + " | 실시간 지원자수 "+ data6[14]+"명"," | 실시간 경쟁률 " + data6[15]
+        kwang = "광운대 특기자전형  : " + data7[280] +  " | 모집인원 "+ data7[281] +"명" + " | 실시간 지원자수 "+ data7[282]+"명"," | 실시간 경쟁률 " + data7[283]
+        soongsil = "숭실대 특기자전형  : " + data8[728] +  " | 모집인원 "+ data8[729] +"명" + " | 실시간 지원자수 "+ data8[730]+"명"," | 실시간 경쟁률 " + data8[731]
+        hangyang = "한양대 특기자전형  : " + data9[850] +  " | 모집인원 "+ data9[851] +"명" + " | 실시간 지원자수 "+ data9[852]+"명"," | 실시간 경쟁률 " + data9[853]
         
-        final_result = gacheon + gatalic + gagede 
+        final_result = gacheon + gatalic + gagede + unist + dgist + kwang +soongsil + hangyang
+        
         print(server_message)
         print(final_result)
         print("successfully")
         Send_Email(EMAIL.SEND, str(final_result), "대학교 실시간 경쟁률")
         
-        
-        
+     
         
         

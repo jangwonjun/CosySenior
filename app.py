@@ -224,12 +224,11 @@ def send_message():
         sender.create_message(ai.create_response("활기찬 아침"), to=call)
         print("successful")
 
-@sched.scheduled_job('cron', second='0', id='univ_ratio_check')
+@sched.scheduled_job('cron', minute='*/30', id='univ_ratio_check')
 def univ_ratio_check():
     current_time = time.strftime("%H:%M:00")
     print(current_time)
     univ_ratio("대학경쟁률 실시간 조회(학교별로 업데이트 시간이 달라요!)")
-    
     
 
 sched.start()
