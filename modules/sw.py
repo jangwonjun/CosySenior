@@ -17,7 +17,9 @@ sched = BackgroundScheduler()
 class univ_ratio:
     def __init__(self,server_message):
         self.server_message = server_message
-    
+                
+        #진학사인경우 ssl 사용이 가능하지만, 유웨이는 프로토콜로 사용해야함. ssl 경고가 발새앟여 사용이 불가능함.
+            
         gacheon_sw = 'https://addon.jinhakapply.com/RatioV1/RatioH/Ratio10190361.html'
         gatalic_sw = 'https://addon.jinhakapply.com/RatioV1/RatioH/Ratio10030221.html'
         gagede_sw = 'http://ratio.uwayapply.com/Sl5KMDpXJkpmJSY6Jkp6ZlRm'
