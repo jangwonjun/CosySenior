@@ -8,6 +8,12 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 sched = BackgroundScheduler()
 
+'''
+경쟁률 실시간 분석기이지만, 시간이 없어서 겁나 비효율적으로 코딩을 하였습니다. 더군다나 Beautiful Soup를 처음써보는지라 그랬습니다.
+기본적인 모듈정리와 identify_SMTP를 이용하여 제작하였습니다! 
+대학 합격을 기원하며... 
+'''
+
 class univ_ratio:
     def __init__(self,server_message):
         self.server_message = server_message
@@ -104,15 +110,25 @@ class univ_ratio:
         soongsil = "숭실대 특기자전형  : " + data8[728] +  " | 모집인원 "+ data8[729] +"명" + " | 실시간 지원자수 "+ data8[730]+"명"," | 실시간 경쟁률 " + data8[731]
         hangyang = "한양대 특기자전형  : " + data9[850] +  " | 모집인원 "+ data9[851] +"명" + " | 실시간 지원자수 "+ data9[852]+"명"," | 실시간 경쟁률 " + data9[853]
         
-        final_result = "\n".join([str(gacheon), str(gatalic), str(gagede), str(unist), str(dgist), str(kwang), str(soongsil), str(hangyang)])
-                
         print(server_message)
-    
-        print(final_result)
+        #print(gist)
+        
+        final_result2 = []
+        send_final_result = []
+        final_result = "\n".join([str(gacheon), str(gatalic), str(gagede), str(unist), str(dgist), str(kwang), str(soongsil), str(hangyang)])
+        check_univ_ratio = [str(data[1082]),"가천대"],[str(data2[495]),"가톨릭대"], [str(data3[287]),"서울과기대"],[str(data4[15]),"GIST"],[str(data5[9]),"UNIST"],[str(data6[15]),"DGIST"],[str(data7[283]),"광운대"],[str(data8[731]),"숭실대"],[str(data9[853]),"한양대"]  
+        check_univ_ratio = sorted(check_univ_ratio, key=lambda x: x[0],reverse=True)
+        for i in range(len(check_univ_ratio)):
+            final_result2.append(check_univ_ratio[i][1])
+            #print(f"실시간 경쟁률 기준 학교 순위 : {check_univ_ratio[i][1]}")
+            
+        send_final_result = "\n".join(["실시간 경쟁률",str(final_result),"실시간 경쟁률 순위",str(final_result2)]) 
+        
+        print(send_final_result)
         print("successfully")
         
-        Send_Email(EMAIL.SEND, str(final_result), "대학교 실시간 경쟁률")
+        Send_Email(EMAIL.SEND, str(send_final_result), "대학교 실시간 경쟁률")
         
-     
+        
         
         
