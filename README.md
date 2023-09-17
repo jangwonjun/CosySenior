@@ -13,3 +13,20 @@
   <img src="https://img.shields.io/badge/fontawesome-339AF0?style=for-the-badge&logo=fontawesome&logoColor=white">
 </div>
 
+
+<div><h2>Function</h2></div>
+<table>
+  <tr>
+      <th>모닝콜/건강문자</th>
+      <th>말동무 챗봇</th>
+      <th>주변기기 연동설정</th>
+      <th>긴급상황 SOS</th>
+  </tr>
+  <tr>
+      <td>자연어처리 기반으로한 모닝콜전화/메세지를 <br> 예약한 시간에 자동으로 전송해줍니다.</td>
+      <td>독거노인들을 위해서 말동무가 되어줄 <br> 자연어처리기반 Pytorch 챗봇입니다.</td>
+      <td>Pyserial을 이용하여 Arduino 연동이 가능합니다<br>(다만, 아직은 프로토타입니다.)</td>
+      <td>긴급상황이 발생하면 자동으로 <br> 호출해줍니다.</td>
+  </tr>
+  
+</table>
