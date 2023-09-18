@@ -49,9 +49,8 @@
   <div><h3>Twilio API</h3>
     <div>
       구글에서 많은 Twilio 문자에 대한 레퍼런스가 많지만 전화에 대한 레퍼런스는 없습니다. <br>
-      처음에 어떻게 해야할지 고민했지만 Twilio 공식 Reference에 설명되어 있는것을 이용하여 구축하였습니다. <br>
-      
-                                                  
+      처음에 어떻게 해야할지 고민했지만 Twilio 공식 Reference에 설명되어 있는것을 이용하여 구축하였습니다. <br>             
+      moduels/client_call.py, moduels/client_message.py에서 코드를 참고하세요! <br>
     </div>
   </div>
   
